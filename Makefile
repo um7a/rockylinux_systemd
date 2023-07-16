@@ -24,19 +24,19 @@ clean: stop
 
 .PHONY: run
 run: stop
-  # Create container
+	# Create container
 	docker run \
 	-itd \
 	--rm \
 	--privileged \
 	--volume /sys/fs/cgroup:/sys/fs/cgroup:ro \
 	--name ${CONTAINER_NAME} \
-  ${IMAGE_NAME}:${TAG}
+	${IMAGE_NAME}:${TAG}
 
-  # Execute bash
+	# Execute bash
 	docker exec \
 	-it \
-  ${CONTAINER_NAME} \
+	${CONTAINER_NAME} \
 	/bin/bash
 
 .PHONY: stop
@@ -44,7 +44,7 @@ stop:
 ifneq (${ContainerExists}, "")
 		@echo "!!! Container exists. Delete. !!!"
 		docker stop \
-	  ${CONTAINER_NAME}
+		${CONTAINER_NAME}
 else
 		@echo "Container does not exist."
 endif
